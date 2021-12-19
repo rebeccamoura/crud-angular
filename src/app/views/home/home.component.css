@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+
+div.title h1 {
+    font-size: 4rem;
+}
+
+div.title p {
+    font-size: 2rem;
+}
+
+button {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

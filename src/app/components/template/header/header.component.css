@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+header {
+    position: absolute;
+    right: 0;
+    /*width: calc(100vw - 200px);*/
+    width: 100vw;
+    background-color: rgb(223, 223, 223);
+    box-shadow: 0px 1px 5px rgb(124, 124, 124);
+}
+
+header h1 {
+    color: rgb(138, 138, 138);
+}

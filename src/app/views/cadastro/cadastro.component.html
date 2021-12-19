@@ -1,0 +1,29 @@
+<div class="form">
+
+    <h1 class="mt-5">Cadastro de produtos</h1>
+
+    <form>
+
+        <label for="descricao" class="form-label">Descrição</label>
+        <input type="text" class="form-control" name="descricao" [(ngModel)]="product.descricao">
+
+        <label for="preco" class="form-label">Preço</label>
+        <input type="number" class="form-control" name="preco" [(ngModel)]="product.preco">
+
+        <label for="categoria" class="form-label">Categoria</label>
+        <input type="text" class="form-control" name="categoria" [(ngModel)]="product.categoria">
+
+        <label for="estoque-minimo" class="form-label">Estoque mínimo</label>
+        <input type="number" class="form-control" name="estoque-minimo" [(ngModel)]="product.estoqueMin">
+
+        <label for="fornecedor" class="form-label">Fornecedor</label>
+        <input type="text" class="form-control" name="fornecedor"  [(ngModel)]="product.fornecedor">
+
+    </form>
+
+    <div class="button-container">
+        <button (click)="criarProduto()" class="green-button">Salvar</button>
+        <button class="red-button" routerLink="/">Cancelar</button>
+    </div>
+
+</div>
