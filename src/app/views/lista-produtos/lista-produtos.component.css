@@ -2,9 +2,9 @@
 
 div.listagem-produtos {}
 
-div.listagem-produtos div.header {}
+div.listagem-produtos header {}
 
-div.listagem-produtos div.header h1 {
+div.listagem-produtos header h1 {
     font-size: 4rem;
 }
 
@@ -83,14 +83,20 @@ div.pop-up {
     text-align: center;
 }
 
-div.pop-up p {
+div.pop-up.excluir p {
     font-size: 1.8rem;
 }
 
-div.pop-up h2 {
+div.pop-up.excluir h2 {
     margin-top: 20px;
 }
 
 .d-none {
     display: none;
+}
+
+
+
+div.pop-up.editar {
+   position: absolute;
 }

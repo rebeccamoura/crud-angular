@@ -2,7 +2,9 @@
 
     <h1 class="mt-5">Cadastro de produtos</h1>
 
-    <form>
+    <app-form></app-form>
+
+    <!--<form>
 
         <label for="descricao" class="form-label">Descrição</label>
         <input type="text" class="form-control" name="descricao" [(ngModel)]="product.descricao">
@@ -19,7 +21,7 @@
         <label for="fornecedor" class="form-label">Fornecedor</label>
         <input type="text" class="form-control" name="fornecedor"  [(ngModel)]="product.fornecedor">
 
-    </form>
+    </form>-->
 
     <div class="button-container">
         <button (click)="criarProduto()" class="green-button">Salvar</button>

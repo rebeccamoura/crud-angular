@@ -1,11 +1,11 @@
 <div class="listagem-produtos">
 
-    <div class="header">
+    <header class="header">
 
         <h1 class="mt-5">Listagem de produtos</h1>
         <!--<input type="search" name="" id="">-->
 
-    </div>
+    </header>
 
     <button class="mt-3" routerLink="/cadastro">Novo produto</button>
 
@@ -33,10 +33,10 @@
                 <td>{{ produto.preco }}</td>
                 <td>{{ produto.categoria }}</td>
                 <td>{{ produto.estoqueMin }}</td>
-                <td>{{ produto.fornecedor }}.</td>
+                <td>{{ produto.fornecedor }}</td>
                 <td>
                     <i class="fas fa-edit mr-3 ml-2"></i>
-                    <i (click)="excluirProduto($event)" class="fas fa-trash"></i>
+                    <i (click)="popUpExcluirProduto($event)" class="fas fa-trash"></i>
                 </td>
             </tr>
 
@@ -50,20 +50,42 @@
 
 </div>
 
-<div class="background d-none"></div>
-<div class="pop-up d-none">
+<div class="background excluir editar d-none"></div>
+<div class="pop-up excluir d-none">
     <h1 class="mb-5 mt-2">Deseja deletar esse produto?</h1>
     <h2>Descrição:</h2>
-    <p>Descrição</p>
+    <p class="pop-up excluir desc">Descrição</p>
     <h2>Preço:</h2>
-    <p>R$0,00</p>
+    <p class="pop-up excluir preco">R$0,00</p>
     <h2>Categoria:</h2>
-    <p>Categoria</p>
+    <p class="pop-up excluir categoria">Categoria</p>
     <h2>Estoque mínimo:</h2>
-    <p>0</p>
+    <p class="pop-up excluir estoque">0</p>
     <h2>Fornecedor:</h2>
-    <p>Fornecedor</p>
+    <p class="pop-up excluir fornecedor">Fornecedor</p>
 
-    <button class="red-button mt-5">Excluir</button>
+    <button (click)="excluirProduto()" class="red-button mt-5">Excluir</button>
 </div>
 
+<div class="pop-up editar d-none">
+
+    <form>
+
+        <label for="descricao" class="form-label">Descrição</label>
+        <input type="text" class="form-control" name="descricao" [(ngModel)]="product.descricao">
+
+        <label for="preco" class="form-label">Preço</label>
+        <input type="number" class="form-control" name="preco" [(ngModel)]="product.preco">
+
+        <label for="categoria" class="form-label">Categoria</label>
+        <input type="text" class="form-control" name="categoria" [(ngModel)]="product.categoria">
+
+        <label for="estoque-minimo" class="form-label">Estoque mínimo</label>
+        <input type="number" class="form-control" name="estoque-minimo" [(ngModel)]="product.estoqueMin">
+
+        <label for="fornecedor" class="form-label">Fornecedor</label>
+        <input type="text" class="form-control" name="fornecedor"  [(ngModel)]="product.fornecedor">
+
+    </form>
+
+</div>

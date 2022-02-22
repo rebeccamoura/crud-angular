@@ -8,7 +8,10 @@ import { Product } from './product.model';
 
 export class ProductService {
 
-  products: Product[] = JSON.parse(localStorage.getItem('products')!) || []
+  q = (element: any) => document.querySelector(element)
+  qAll = (elements: any) => document.querySelector(elements)
+
+  products: Product[] = []
 
   constructor() {
   }
@@ -16,17 +19,18 @@ export class ProductService {
   create(product: Product): void {
 
     this.products.push(product)
-    localStorage.setItem("products", JSON.stringify(this.products))
 
   }
 
   exibirProduto(idProduto: any) {
     
     const produtoParaExibir = this.products.find(product => product.id == idProduto)
-    console.log(produtoParaExibir)
+    this.q('.pop-up.excluir.desc').innerHTML = produtoParaExibir?.descricao
+    this.q('.pop-up.excluir.preco').innerHTML = produtoParaExibir?.preco
+    this.q('.pop-up.excluir.categoria').innerHTML = produtoParaExibir?.categoria
+    this.q('.pop-up.excluir.estoque').innerHTML = produtoParaExibir?.estoqueMin
+    this.q('.pop-up.excluir.fornecedor').innerHTML = produtoParaExibir?.fornecedor
 
   }
-
-  delete(evento: any) {}
 
 }

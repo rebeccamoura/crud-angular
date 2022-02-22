@@ -21,8 +21,9 @@ export class CadastroComponent implements OnInit {
   id: number = 0;
 
   constructor(private productService: ProductService) {
-    if (localStorage.getItem("products")) {
-      this.id = JSON.parse(localStorage.getItem("products")!).length
+
+    if (this.productService.products) {
+      this.id = this.productService.products.length
     }
   }
 
@@ -31,7 +32,7 @@ export class CadastroComponent implements OnInit {
 
   criarProduto() {
     
-    this.id++
+    this.id += 1
     let dadosProduto = {...this.product};
     dadosProduto.id = this.id
     this.productService.create(dadosProduto)

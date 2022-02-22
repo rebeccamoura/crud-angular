@@ -11,6 +11,7 @@ import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.co
 import { FormsModule } from '@angular/forms';
 import { ExcluirProdutoComponent } from './views/excluir-produto/excluir-produto.component';
 import { EditarProdutoComponent } from './views/editar-produto/editar-produto.component';
+import { FormComponent } from './components/template/form/form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditarProdutoComponent } from './views/editar-produto/editar-produto.co
     CadastroComponent,
     ListaProdutosComponent,
     ExcluirProdutoComponent,
-    EditarProdutoComponent
+    EditarProdutoComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
