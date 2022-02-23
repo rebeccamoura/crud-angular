@@ -9,40 +9,9 @@ import { ProductService } from 'src/app/components/product/product.service';
 })
 export class CadastroComponent implements OnInit {
 
-
-  product: Product = {
-    descricao: '',
-    preco: null!,
-    categoria: '',
-    estoqueMin: null!,
-    fornecedor: '',
-  }
-
-  id: number = 0;
-
-  constructor(private productService: ProductService) {
-
-    if (this.productService.products) {
-      this.id = this.productService.products.length
-    }
-  }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  criarProduto() {
-    
-    this.id += 1
-    let dadosProduto = {...this.product};
-    dadosProduto.id = this.id
-    this.productService.create(dadosProduto)
-
-    this.product.descricao = ''
-    this.product.preco = null!
-    this.product.categoria = ''
-    this.product.estoqueMin = null!
-    this.product.fornecedor = ''
-
   }
 
 }

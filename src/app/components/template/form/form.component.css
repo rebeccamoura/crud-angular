@@ -1,3 +1,47 @@
 @charset "UTF-8";
 
+form label, form input {
+    font-size: 2rem;
+}
 
+form label {
+    margin-top: 20px;
+}
+
+form label:first-child {
+    margin-top: 0px;
+}
+
+form input {
+    height: 30px;
+}
+
+form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+form input[type="number"] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+form div.button-container {
+    display: flex;
+    justify-content: center
+}
+
+form div.button-container button {
+    margin-top: 30px;
+}
+
+div.button-container button.red-button {
+    margin-left: 20px;
+}
+
+div.button-container button.green-button:hover {
+    color: var(--light-green);
+}
+
+div.button-container button.red-button:hover {
+    color: var(--red-color);
+}

@@ -23,15 +23,18 @@ body {
     --ice-color: #E6ECE2;
 }
 
-.red-button {
+.btn {
     cursor: pointer;
     font-size: 2rem;
-    background-color: var(--red-color);
-    color: var(--ice-color);
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid var(--red-color);
     transition: background-color .4s, color .4s;
+}
+
+.red-button {
+    background-color: var(--red-color);
+    color: var(--ice-color);
+    border: 2px solid var(--red-color);
 }
 
 .red-button:hover {
@@ -40,17 +43,23 @@ body {
 }
 
 .green-button {
-    cursor: pointer;
-    font-size: 2rem;
     background-color: var(--light-green);
     color: var(--ice-color);
-    padding: 10px;
-    border-radius: 10px;
     border: 2px solid var(--light-green);
-    transition: background-color .4s, color .4s;
 }
 
 .green-button:hover {
     background-color: var(--ice-color);
     color: var(--light-green);
+}
+
+.yellow-button {
+    background-color: var(--yellow-color);
+    color: var(--ice-color);
+    border: 2px solid var(--yellow-color);
+}
+
+.yellow-button:hover {
+    background-color: var(--ice-color);
+    color: var(--yellow-color);
 }

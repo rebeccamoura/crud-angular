@@ -1,6 +1,23 @@
 <form>
 
     <label for="descricao" class="form-label">Descrição</label>
-    <input type="text" class="form-control" name="descricao" [(ngModel)]="product.descricao">
+    <input type="text" class="form-control desc" name="descricao" [(ngModel)]="product.descricao">
+
+    <label for="preco" class="form-label">Preço</label>
+    <input type="number" class="form-control price" name="preco" [(ngModel)]="product.preco">
+    
+    <label for="categoria" class="form-label">Categoria</label>
+    <input type="text" class="form-control categoria" name="categoria" [(ngModel)]="product.categoria">
+
+    <label for="estoque-minimo" class="form-label">Estoque mínimo</label>
+    <input type="number" class="form-control estoqueMin" name="estoque-minimo" [(ngModel)]="product.estoqueMin">
+
+    <label for="fornecedor" class="form-label">Fornecedor</label>
+    <input type="text" class="form-control fornecedor" name="fornecedor" [(ngModel)]="product.fornecedor">
+
+    <div class="button-container">
+        <button (click)="enviarForm($event)" class="green-button btn">Salvar</button>
+        <button class="red-button btn" routerLink="/produtos">Cancelar</button>
+    </div>
 
 </form>

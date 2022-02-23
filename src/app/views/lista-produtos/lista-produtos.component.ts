@@ -9,16 +9,13 @@ import { ProductService } from 'src/app/components/product/product.service';
   styleUrls: ['./lista-produtos.component.css']
 })
 export class ListaProdutosComponent implements OnInit {
-  
-  product: Product = {
-    descricao: '',
-    preco: null!,
-    categoria: '',
-    estoqueMin: null!,
-    fornecedor: '',
-  }
+
+  q = (element: any) => document.querySelector(element)
+  qAll = (elements: any) => document.querySelectorAll(elements)
   
   idProduto: any = '';
+
+  product: Product[] = this.productService.products ;
 
   constructor( public productService: ProductService, private router: Router ) { }
 
@@ -27,10 +24,29 @@ export class ListaProdutosComponent implements OnInit {
 
   popUpExcluirProduto(evento: MouseEvent) {
 
-    document.querySelectorAll('.excluir.d-none').forEach(elemento => elemento.classList.remove('d-none'))
+    this.qAll('.excluir.d-none').forEach(elemento => elemento.classList.remove('d-none'))
     this.pegarId(evento)
     this.productService.exibirProduto(this.idProduto)    
 
+  }
+
+  popUpEditarProduto(evento: MouseEvent) {
+
+    this.pegarId(evento)
+    this.product.forEach(item => {
+      if (item.id === Number(this.idProduto)) {
+
+        this.q('.edicao form input.desc').value = item.descricao
+        this.q('.edicao form input.price').value = item.preco
+        this.q('.edicao form input.categoria').value = item.categoria
+        this.q('.edicao form input.estoqueMin').value = item.estoqueMin
+        this.q('.edicao form input.fornecedor').value = item.fornecedor
+        this.q('.edicao form').id = item.id
+
+      }
+    })
+    this.qAll('.editar.d-none').forEach(elemento => elemento.classList.remove('d-none'))
+  
   }
 
   pegarId(evento: any) {
@@ -39,17 +55,17 @@ export class ListaProdutosComponent implements OnInit {
 
   excluirProduto() {
 
-    this.productService.products.forEach(product => {
-      if (product.id === Number(this.idProduto)) {
+    this.product.forEach(item => {
+      if (item.id === Number(this.idProduto)) {
 
-        let itemExcluir = this.productService.products.findIndex(item => item === product)
+        let itemExcluir = this.product.findIndex(item => item === item)
         this.productService.products.splice(itemExcluir, 1)
 
       }
     })
 
-    document.querySelector('.background')?.classList.add('d-none')
-    document.querySelector('.pop-up.excluir')?.classList.add('d-none')
+    this.q('.background')?.classList.add('d-none')
+    this.q('.pop-up.excluir')?.classList.add('d-none')
 
   }
 
