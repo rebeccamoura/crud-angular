@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "descricao": "Produto",
+      "preco": 3,
+      "categoria": "produtin",
+      "estoqueMin": 100,
+      "fornecedor": "eu",
+      "id": 1
+    },
+    {
+      "descricao": "2",
+      "preco": 2,
+      "categoria": "2",
+      "estoqueMin": 2,
+      "fornecedor": "2",
+      "id": 2
+    }
+  ]
+}

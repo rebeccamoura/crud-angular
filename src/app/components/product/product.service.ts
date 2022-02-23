@@ -10,14 +10,37 @@ export class ProductService {
   q = (element: any) => document.querySelector(element)
   qAll = (elements: any) => document.querySelector(elements)
 
-  products: Product[] = []
+  products: Product[] = [];
 
   constructor() {
+    this.getProducts()
+  }
+
+  getProducts() {
+    fetch('http://localhost:5000/products', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.products = data
+      })
   }
 
   create(product: Product): void {
 
-    this.products.push(product)
+    fetch('http://localhost:5000/products', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+      .catch((err) => console.log(err))
+
+    this.getProducts()
 
   }
 

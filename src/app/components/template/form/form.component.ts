@@ -19,23 +19,14 @@ export class FormComponent implements OnInit {
     fornecedor: '',
   }
 
-  id: number = 0;
-
-  constructor(private productService: ProductService, private router: Router) {
-
-    if (this.productService.products) {
-      this.id = this.productService.products.length
-    }
-  }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   criarProduto() {
 
-    this.id += 1
     let dadosProduto = {...this.product};
-    dadosProduto.id = this.id
     this.productService.create(dadosProduto)
 
     this.product.descricao = ''

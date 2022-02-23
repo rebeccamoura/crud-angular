@@ -33,7 +33,17 @@ export class ListaProdutosComponent implements OnInit {
   popUpEditarProduto(evento: MouseEvent) {
 
     this.pegarId(evento)
-    this.product.forEach(item => {
+    this.productService.products.forEach(item => {
+      if(item.id === Number(this.idProduto)) {
+        this.q('.edicao form input.desc').value = item.descricao
+        this.q('.edicao form input.price').value = item.preco
+        this.q('.edicao form input.categoria').value = item.categoria
+        this.q('.edicao form input.estoqueMin').value = item.estoqueMin
+        this.q('.edicao form input.fornecedor').value = item.fornecedor
+        this.q('.edicao form').id = item.id
+      }
+    })
+    /*this.product.forEach(item => {
       if (item.id === Number(this.idProduto)) {
 
         this.q('.edicao form input.desc').value = item.descricao
@@ -44,7 +54,7 @@ export class ListaProdutosComponent implements OnInit {
         this.q('.edicao form').id = item.id
 
       }
-    })
+    })*/
     this.qAll('.editar.d-none').forEach(elemento => elemento.classList.remove('d-none'))
   
   }
@@ -55,14 +65,16 @@ export class ListaProdutosComponent implements OnInit {
 
   excluirProduto() {
 
-    this.product.forEach(item => {
-      if (item.id === Number(this.idProduto)) {
-
-        let itemExcluir = this.product.findIndex(item => item === item)
-        this.productService.products.splice(itemExcluir, 1)
-
+    fetch(`http://localhost:5000/products/${this.idProduto}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
       }
     })
+      .then((resp) => resp.json())
+      .then((data) => console.log(data))
+    
+    this.productService.getProducts()
 
     this.q('.background')?.classList.add('d-none')
     this.q('.pop-up.excluir')?.classList.add('d-none')
