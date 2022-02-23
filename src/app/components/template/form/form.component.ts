@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListaProdutosComponent } from 'src/app/views/lista-produtos/lista-produtos.component';
 import { Product } from '../../product/product.model';
 import { ProductService } from '../../product/product.service';
 
@@ -19,7 +18,7 @@ export class FormComponent implements OnInit {
     fornecedor: '',
   }
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -37,27 +36,46 @@ export class FormComponent implements OnInit {
 
   }
 
-  editarProduto(idProduto: number) {
+  editarProduto(item: Product, itemId: number) {
 
-    if (this.product.descricao) {
-      this.productService.products[idProduto - 1].descricao = this.product.descricao
+    if (!this.product.descricao) {
+      this.product.descricao = item.descricao
     }
 
-    if (this.product.preco) {
-      this.productService.products[idProduto - 1].preco = this.product.preco
+    if (!this.product.preco) {
+      this.product.preco = item.preco
     }
 
-    if (this.product.categoria) {
-      this.productService.products[idProduto - 1].descricao = this.product.categoria
+    if (!this.product.categoria) {
+      this.product.categoria = item.categoria
     }
 
-    if (this.product.estoqueMin) {
-      this.productService.products[idProduto - 1].estoqueMin = this.product.estoqueMin
+    if (!this.product.estoqueMin) {
+      this.product.estoqueMin = item.estoqueMin
     }
 
-    if (this.product.fornecedor) {
-      this.productService.products[idProduto - 1].fornecedor = this.product.fornecedor
+    if (!this.product.fornecedor) {
+      this.product.fornecedor = item.fornecedor
     }
+
+    fetch(`http://localhost:5000/products/${itemId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(this.product)
+    })
+      .then((resp) => {
+        this.productService.getProducts()
+        this.router.navigate(['/produtos'])
+      })
+      .catch(err => console.log(err)) 
+    
+    this.product.descricao = ''
+    this.product.preco = null!
+    this.product.categoria = ''
+    this.product.estoqueMin = null!
+    this.product.fornecedor = ''
 
   }
 
@@ -70,14 +88,12 @@ export class FormComponent implements OnInit {
 
     this.productService.products.forEach(item => {
       if (item.id === Number(document.querySelector('form')?.id)) {
-        this.editarProduto(item.id)
+        this.editarProduto(item, item.id)
         document.querySelector('form')?.parentElement?.parentElement?.classList.add('d-none')
 
         document.querySelector('form')?.parentElement?.parentElement?.parentElement?.querySelector('.background')?.classList.add('d-none')
       }
     })
-
-    //console.log(document.querySelector('form')?.id) //string
 
   }
 

@@ -43,18 +43,7 @@ export class ListaProdutosComponent implements OnInit {
         this.q('.edicao form').id = item.id
       }
     })
-    /*this.product.forEach(item => {
-      if (item.id === Number(this.idProduto)) {
 
-        this.q('.edicao form input.desc').value = item.descricao
-        this.q('.edicao form input.price').value = item.preco
-        this.q('.edicao form input.categoria').value = item.categoria
-        this.q('.edicao form input.estoqueMin').value = item.estoqueMin
-        this.q('.edicao form input.fornecedor').value = item.fornecedor
-        this.q('.edicao form').id = item.id
-
-      }
-    })*/
     this.qAll('.editar.d-none').forEach(elemento => elemento.classList.remove('d-none'))
   
   }
@@ -71,8 +60,10 @@ export class ListaProdutosComponent implements OnInit {
         'Content-type': 'application/json'
       }
     })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((resp) => {
+        this.productService.getProducts()
+        this.router.navigate(['/produtos'])
+      })
     
     this.productService.getProducts()
 
