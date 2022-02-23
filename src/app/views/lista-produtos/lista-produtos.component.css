@@ -12,12 +12,19 @@ div.listagem-produtos header h1 {
     font-size: 4rem;
 }
 
-div.listagem-produtos header input[type="search"] {
-    margin-right: 20px;
+div.listagem-produtos header input[type="text"] {
+    width: 400px;
     padding: 5px 10px;
     font-size: 2rem;
-    width: 400px;
     border-radius: 10px;
+    height: 45px;
+    margin-right: 20px;
+}
+
+div.listagem-produtos header input[type="text"]:focus {
+    border-color: var(--light-green);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+    outline: 0 none;
 }
 
 div.listagem-produtos table {

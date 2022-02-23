@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ListaProdutosComponent } from 'src/app/views/lista-produtos/lista-produtos.component';
 import { Product } from './product.model';
 
 @Injectable({
