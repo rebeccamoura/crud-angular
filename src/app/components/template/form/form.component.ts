@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
     fornecedor: '',
   }
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -68,8 +68,9 @@ export class FormComponent implements OnInit {
       .then((resp) => {
         this.productService.getProducts()
         this.router.navigate(['/produtos'])
+        this.productService.mostrarMensagem('Produto editado com sucesso.')
       })
-      .catch(err => console.log(err)) 
+      .catch(err => this.productService.mostrarMensagem('Ocorreu um erro.')) 
     
     this.product.descricao = ''
     this.product.preco = null!

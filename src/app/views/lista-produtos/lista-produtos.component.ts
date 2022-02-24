@@ -61,9 +61,13 @@ export class ListaProdutosComponent implements OnInit {
       }
     })
       .then((resp) => {
+        this.productService.mostrarMensagem('Produto deletado com sucesso.')
+      })
+      .then((resp) => {
         this.productService.getProducts()
         this.router.navigate(['/produtos'])
       })
+      .catch((err) => this.productService.mostrarMensagem('Ocorreu um erro.'))
     
     this.productService.getProducts()
 

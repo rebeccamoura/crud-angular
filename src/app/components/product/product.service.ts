@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from './product.model';
 
 @Injectable({
@@ -11,8 +12,9 @@ export class ProductService {
   qAll = (elements: any) => document.querySelector(elements)
 
   products: Product[] = [];
+  snackbar: any;
 
-  constructor() {
+  constructor( private router: Router ) {
     this.getProducts()
   }
 
@@ -38,10 +40,29 @@ export class ProductService {
       },
       body: JSON.stringify(product)
     })
-      .catch((err) => console.log(err))
+      .then((resp) => {
+        this.router.navigate(['/produtos'])
+        setTimeout(() => {
+          this.mostrarMensagem('Produto cadastrado com sucesso.')
+        }, 500)
+      })
+      .catch((err) => this.mostrarMensagem('Ocorreu um erro.'))
 
     this.getProducts()
 
+  }
+
+  getSnackbar(elSnackbar: any) {
+    this.snackbar = elSnackbar
+  }
+
+
+  mostrarMensagem(msg: string) {
+    this.snackbar.innerHTML = msg
+    this.snackbar.classList.remove('d-none')
+    setTimeout(() => {
+      this.snackbar.classList.add('d-none')
+    }, 2000)
   }
 
   exibirProduto(idProduto: any) {
